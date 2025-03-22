@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div class="container" id="registrationContainer" style="display: none;">
+        <h2>Student Registration</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+                <button type="button" id="sendOtp">Send OTP</button>
+            </div>
+            <div class="form-group" id="otpField" style="display: none;">
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" name="otp" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('registrationContainer').style.display = 'block';
+        });
+
+        document.getElementById('sendOtp').addEventListener('click', function() {
+            const phone = document.getElementById('phone').value;
+            if (phone) {
+                alert('OTP sent to ' + phone);
+                document.getElementById('otpField').style.display = 'block';
+            } else {
+                alert('Please enter a valid phone number.');
+            }
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const otp = document.getElementById('otp').value;
+            const password = document.getElementById('password').value;
+
+            if (fullName && email && phone && otp && password) {
+                alert('Registration successful! Data saved successfully.');
+            } else {
+                alert('Please fill in all the fields.');
+            }
+        });
+    </script>
+</body>
+</html>
